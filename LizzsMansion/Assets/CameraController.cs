@@ -4,23 +4,23 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    Camera cam;
+    [SerializeField] float speed;
+    Camera minimap;
+
     // Start is called before the first frame update
     void Start()
     {
-        cam = GetComponent<Camera>();
+        minimap = GetComponent<Camera>();
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
-
-        Debug.Log(string.Format("(dx, dy) -> ({0}, {1})", horizontal, vertical));
-
-        transform.position = new Vector3(transform.position.x + horizontal,
-            transform.position.y,
-            transform.position.z + vertical);
+        transform.position = new Vector3(transform.position.x, 
+            transform.position.y + vertical * speed,
+            transform.position.z);
+        transform.RotateAround(WorldGrid.centerPoint, Vector3.up,
+            Input.GetAxisRaw("Horizontal"));
     }
 }
