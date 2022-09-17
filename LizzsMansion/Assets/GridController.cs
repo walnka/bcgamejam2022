@@ -24,18 +24,18 @@ public class GridController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     void InitializeGrid()
     {
-        for(int i = 0; i < numXCells; i++)
+        for (int i = 0; i < numXCells; i++)
         {
-            for(int j = 0; j < numYCells; j++)
+            for (int j = 0; j < numYCells; j++)
             {
-                gridCellList[i, j] = new GridCell(sizeX*i, sizeY*i, sizeX, sizeY);
-                Instantiate(testObj, 
-                    new Vector3(sizeX*i, 0, sizeY*j), 
+                gridCellList[i, j] = new GridCell(sizeX * i, sizeY * i, sizeX, sizeY);
+                Instantiate(testObj,
+                    new Vector3(sizeX * i, 0, sizeY * j),
                     Quaternion.identity).SetActive(true);
             }
         }

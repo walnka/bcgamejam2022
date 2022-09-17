@@ -8,17 +8,18 @@ public class CameraController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        cam = GetComponent<Camera>();   
+        cam = GetComponent<Camera>();
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
         float horizontal = Input.GetAxisRaw("Horizontal");
+        float vertical = Input.GetAxisRaw("Vertical");
 
         Debug.Log(string.Format("(dx, dy) -> ({0}, {1})", horizontal, vertical));
 
-        transform.position = new Vector3(transform.position.x + horizontal, 
+        transform.position = new Vector3(transform.position.x + horizontal,
             transform.position.y,
             transform.position.z + vertical);
     }
