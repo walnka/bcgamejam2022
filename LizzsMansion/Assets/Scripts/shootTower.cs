@@ -10,6 +10,7 @@ public class shootTower : MonoBehaviour
     private GameObject target;
     private int timer;
     public GameObject projPrefab;
+    public bool isFast; //TODO
     
     // Start is called before the first frame update
     void Start()
