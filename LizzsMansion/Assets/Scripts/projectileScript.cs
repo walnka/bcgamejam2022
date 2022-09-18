@@ -36,6 +36,7 @@ public class projectileScript : MonoBehaviour
         if (collision.gameObject.GetComponent<EnemyController>() != null)
         {
             print("damage");
+            collision.gameObject.GetComponent<EnemyController>().receiveDamage(1, false, false);
             Destroy(gameObject);
         }
 

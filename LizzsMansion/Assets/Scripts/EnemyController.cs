@@ -43,6 +43,7 @@ public class EnemyController : MonoBehaviour
     {
         // enemy walking to the lizzy
         timer -= Time.deltaTime;
+        //print(timer);
 
         if(walkTimer <= 0f)
         {
@@ -92,6 +93,8 @@ public class EnemyController : MonoBehaviour
         {
             targetJ += (int)(dj / Mathf.Abs(dj));
         }
+        if (WorldGrid.gridCellList[targetI, targetJ].occupied)
+            return;
         curCell = WorldGrid.gridCellList[targetI, targetJ];
     }
 
@@ -107,9 +110,9 @@ public class EnemyController : MonoBehaviour
     }
     private void OnTriggerStay(Collider other)
     {
-        
-        if(other.gameObject.GetComponent<towerScript>() != null && timer <= 0)
+        if(other.gameObject.GetComponent<towerScript>() != null && timer <= 0 && other.GetType().Name != "SphereCollider")
         {
+            //print(other.GetType().Name);
             print("enemy dot");
             timer = atkTime;
             other.gameObject.GetComponent<towerScript>().receiveDamage(damage);

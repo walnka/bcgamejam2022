@@ -27,7 +27,8 @@ public class towerScript : MonoBehaviour
 
     public void receiveDamage(float damageAmout)
     {
-        health =- damageAmout;
+        print("Tower damage " + damageAmout);
+        health -= damageAmout;
         checkHealth();
     }
 
