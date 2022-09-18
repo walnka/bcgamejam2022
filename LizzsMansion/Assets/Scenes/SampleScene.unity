@@ -3181,6 +3181,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: E_Solder
       objectReference: {fileID: 0}
+    - target: {fileID: 4800209376441856350, guid: 36316b1494f9beb48bfcc3340ba27175, type: 3}
+      propertyPath: m_Constraints
+      value: 112
+      objectReference: {fileID: 0}
     - target: {fileID: 4800209377207227849, guid: 36316b1494f9beb48bfcc3340ba27175, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -3656,7 +3660,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4800209376441856343, guid: 45f0d83fce23ff14197a31440d020dff, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4800209376441856348, guid: 45f0d83fce23ff14197a31440d020dff, type: 3}
       propertyPath: lizzy
@@ -3665,6 +3669,10 @@ PrefabInstance:
     - target: {fileID: 4800209376441856348, guid: 45f0d83fce23ff14197a31440d020dff, type: 3}
       propertyPath: health
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4800209376441856350, guid: 45f0d83fce23ff14197a31440d020dff, type: 3}
+      propertyPath: m_Constraints
+      value: 112
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 45f0d83fce23ff14197a31440d020dff, type: 3}
