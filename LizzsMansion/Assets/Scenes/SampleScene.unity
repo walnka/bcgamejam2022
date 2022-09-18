@@ -439,6 +439,18 @@ PrefabInstance:
       propertyPath: attackRadius
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 1695335721718118592, guid: 68da9103504bf9249baa0d850929287c, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1695335721718118592, guid: 68da9103504bf9249baa0d850929287c, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1695335721718118592, guid: 68da9103504bf9249baa0d850929287c, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 4480008125350309425, guid: 68da9103504bf9249baa0d850929287c, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -645,6 +657,8 @@ MonoBehaviour:
   bobTimer: 1
   canBeMoved: 0
   referenceTower: {fileID: 1628605459}
+  i: 4
+  j: 5
 --- !u!1 &1814973010
 GameObject:
   m_ObjectHideFlags: 0
