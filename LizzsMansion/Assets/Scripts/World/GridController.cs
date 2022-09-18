@@ -72,13 +72,13 @@ public class GridCell
     public Vector3 worldPosition;
     public Vector2 size;
     public Vector2Int listPosition;
-    public bool canMove;
+    public bool occupied;
     public GridCell(float x, float y, float xSize, float ySize, int i, int j)
     {
         worldPosition = new Vector3(x, 0, y);
         size = new Vector2(xSize, ySize);
         listPosition = new Vector2Int(i, j);
-        canMove = true;
+        occupied = false;
     }
 }
 
