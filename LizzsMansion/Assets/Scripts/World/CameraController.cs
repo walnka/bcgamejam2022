@@ -14,13 +14,13 @@ public class CameraController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        float vertical = Input.GetAxisRaw("Vertical");
+        float vertical = -Input.GetAxisRaw("Vertical");
         float horizontal = Input.GetAxisRaw("Horizontal");
 
         transform.RotateAround(WorldGrid.centerPoint, Vector3.up,
@@ -37,6 +37,9 @@ public class CameraController : MonoBehaviour
         {
             transform.position = transform.position + grid2Camera.normalized * vertical * moveSpeed;
         }
-        
+
+        print(zoomLowerBound + "\t" + grid2Camera.magnitude + "\t" + zoomUpperBound);
+
+
     }
 }

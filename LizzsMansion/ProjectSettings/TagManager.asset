@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Hittable
+  - Lizzy
   layers:
   - Default
   - TransparentFX

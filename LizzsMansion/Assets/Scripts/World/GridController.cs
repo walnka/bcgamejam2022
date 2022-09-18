@@ -22,7 +22,7 @@ public class GridController : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         gridCellList = new GridCell[numXCells, numYCells];
         InitializeGrid();
@@ -44,16 +44,13 @@ public class GridController : MonoBehaviour
                 GridCell gc = new GridCell(sizeX * i, sizeY * j, sizeX, sizeY, i, j);
                 gridCellList[i, j] = gc;
                 GameObject gridCellObj = Instantiate(testObj,
-                    new Vector3(sizeX * i, 0, sizeY * j),
+                    new Vector3(sizeX * i, -0.5f, sizeY * j),
                     Quaternion.identity);
                 gridCellObj.SetActive(true);
                 WorldGrid.gridCellDict.Add(gridCellObj, gc);
             }
         }
-        foreach(KeyValuePair<GameObject, GridCell> entry in WorldGrid.gridCellDict)
-        {
-            Debug.Log(entry.Key + "\t" + entry.Value.listPosition);
-        }
+
         WorldGrid.Initialize(gridCellList, numXCells, numYCells);
         //Instantiate(testObj,
          //   new Vector3(WorldGrid.centerPoint.x,
@@ -74,7 +71,7 @@ public class GridCell
     //public float x, y, xSize, ySize;
     public Vector3 worldPosition;
     public Vector2 size;
-    public Vector2 listPosition;
+    public Vector2Int listPosition;
     public bool canMove;
     public GridCell(float x, float y, float xSize, float ySize, int i, int j)
     {
@@ -144,5 +141,10 @@ public static class WorldGrid
         }
     }
 
-
+    public static GridCell GetClosestGrid(float x, float y)
+    {
+        int i = Mathf.FloorToInt(Mathf.Clamp(x / cellSize.x, 0, numCells.x-1));
+        int j = Mathf.FloorToInt(Mathf.Clamp(y / cellSize.y, 0, numCells.y-1));
+        return gridCellList[i, j];
+    }
 }
