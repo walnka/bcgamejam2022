@@ -40,4 +40,10 @@ public class towerScript : MonoBehaviour
     {
         Destroy(gameObject);
     }
+
+    public GameObject checkNexTower(GameObject baseElement)
+    {
+
+        return null;
+    }
 }
