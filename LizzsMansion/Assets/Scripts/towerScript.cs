@@ -8,6 +8,7 @@ public class towerScript : MonoBehaviour
     public bool asBuff;
     public bool dmBuff;
     public int attackRadius;
+    public AllTowars allTowers;
     public GridCell cellPt { get; set; }
 
 
@@ -47,7 +48,6 @@ public class towerScript : MonoBehaviour
 
     public GameObject checkNexTower(GameObject baseElement)
     {
-
-        return null;
+        return allTowers.CheckCombination(gameObject, baseElement);
     }
 }
