@@ -6,7 +6,7 @@ public class GridController : MonoBehaviour
 {
     #region Serialized fields
     [SerializeField] GameObject testObj;
-    [SerializeField] int numXCells, numYCells;
+    [SerializeField] int numXCells, numYCells, bossFridgeThreshold;
     [SerializeField] float sizeX, sizeY, cameraDistance;
     [SerializeField] CameraController camControl;
     #endregion
@@ -51,7 +51,7 @@ public class GridController : MonoBehaviour
             }
         }
 
-        WorldGrid.Initialize(gridCellList, numXCells, numYCells);
+        WorldGrid.Initialize(gridCellList, numXCells, numYCells, bossFridgeThreshold);
         //Instantiate(testObj,
          //   new Vector3(WorldGrid.centerPoint.x,
          //   WorldGrid.centerPoint.y + 3,
@@ -90,9 +90,12 @@ public static class WorldGrid
     public static Vector2 numCells;
     public static Vector2 cellSize;
     public static Vector3 centerPoint;
+    static int bossFridgeThreshold;
 
-    public static void Initialize(GridCell[,] gridCellList, int numXCells, int numYCells)
+    public static void Initialize(GridCell[,] gridCellList, int numXCells, int numYCells, int bossFridgeThreshold)
     {
+        WorldGrid.bossFridgeThreshold = bossFridgeThreshold;
+
         WorldGrid.gridCellList = gridCellList;
 
         numCells = new Vector2Int(numXCells, numYCells);
@@ -105,6 +108,15 @@ public static class WorldGrid
 
         gridSize = new Vector2((numXCells) * cellSize.x,
             (numYCells) * cellSize.y);
+    }
+
+    public static void RegisterDeath()
+    {
+        bossFridgeThreshold--;
+        if(bossFridgeThreshold <= 0)
+        {
+            //spawn boss fridge
+        }
     }
 
     public static Vector3 GetMouseToWorldPos()
