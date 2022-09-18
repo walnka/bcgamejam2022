@@ -29,6 +29,7 @@ public class DragClicked : StateMachineBehaviour
             if (!curGc.occupied)
             {
                 Instantiate(dc.referenceTower, animator.gameObject.transform.position, Quaternion.identity);
+                curGc.occupied = true;
                 Destroy(animator.gameObject);
             }
         }
