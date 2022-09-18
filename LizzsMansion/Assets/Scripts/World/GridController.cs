@@ -130,6 +130,11 @@ public static class WorldGrid
         {
             if (hit.transform.gameObject.tag == "Hittable")
             {
+                Debug.Log(hit.transform.gameObject);
+                if (hit.transform.gameObject.GetComponent<towerScript>())
+                {
+                    return hit.transform.gameObject.GetComponent<towerScript>().cellPt;
+                }
                 return gridCellDict[hit.transform.gameObject];
             }
             else

@@ -21,6 +21,10 @@ public class projectileScript : MonoBehaviour
         {
             Move();
         }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void Move()

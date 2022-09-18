@@ -8,13 +8,15 @@ public class towerScript : MonoBehaviour
     public bool asBuff;
     public bool dmBuff;
     public int attackRadius;
-    public AllTowars allTowers;
+   // public AllTowars allTowers;
     public GridCell cellPt { get; set; }
+    public List<GridCell> occupiedGridCells { get; set; }
 
 
     // Start is called before the first frame update
     void Start()
     {
+        occupiedGridCells = new List<GridCell>();
         cellPt = WorldGrid.GetClosestGrid(transform.position.x, transform.position.z);
         transform.position = cellPt.worldPosition;
         GetComponent<SphereCollider>().radius = attackRadius;
@@ -43,11 +45,10 @@ public class towerScript : MonoBehaviour
 
     private void Die()
     {
+        foreach(GridCell cell in occupiedGridCells)
+        {
+            cell.occupied = false;
+        }
         Destroy(gameObject);
-    }
-
-    public GameObject checkNexTower(GameObject baseElement)
-    {
-        return allTowers.CheckCombination(gameObject, baseElement);
     }
 }
