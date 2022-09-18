@@ -38,8 +38,11 @@ public class CameraController : MonoBehaviour
             transform.position = transform.position + grid2Camera.normalized * vertical * moveSpeed;
         }
 
-        print(zoomLowerBound + "\t" + grid2Camera.magnitude + "\t" + zoomUpperBound);
+        //print(zoomLowerBound + "\t" + grid2Camera.magnitude + "\t" + zoomUpperBound);
 
-
+        foreach(GameObject visual in GameObject.FindGameObjectsWithTag("Visuals"))
+        {
+            visual.transform.RotateAround(visual.transform.parent.position, Vector3.up, horizontal * rotateSpeed);
+        }
     }
 }
