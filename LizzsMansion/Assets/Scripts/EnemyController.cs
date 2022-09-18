@@ -115,6 +115,7 @@ public class EnemyController : MonoBehaviour
         onFire = isFire;
         if(health <= 0)
         {
+            WorldGrid.RegisterDeath();
             Destroy(gameObject);
         }
     }
