@@ -12,11 +12,13 @@ public class DragClicked : StateMachineBehaviour
     {
         dc = animator.gameObject.GetComponent<DragController>();
         mc = dc.mouse;
+        animator.gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        Debug.Log("updating drag state");
         GridCell gc = WorldGrid.GetGridSnap(animator.gameObject.transform.position);
         
         if(gc != null) 
@@ -28,12 +30,15 @@ public class DragClicked : StateMachineBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             //animator.SetBool("Clicked", false);
+            Debug.Log("the tower clicked is " + mc.clickedTower);
             if (!curGc.occupied)
             {
+                Debug.Log("Drag no occupied instance");
                 GameObject tower = Instantiate(dc.referenceTower, 
                     animator.gameObject.transform.position, 
                     Quaternion.identity);
-                tower.transform.GetChild(1).localScale = new Vector3(20, 20, 20);
+                // TODO: commented out cause inconsistency
+                //tower.transform.GetChild(0).localScale = new Vector3(20, 20, 20);
                 tower.tag = "Hittable";
                 tower.SetActive(true);
                 tower.transform.localScale *= dc.gridSize;

@@ -24,12 +24,16 @@ public class EnemyController : MonoBehaviour
     #endregion
 
     // Start is called before the first frame update
+
+    private void Awake()
+    {
+        lizzy = GameObject.FindGameObjectWithTag("Lizzy"); //TODO add the object Lizzy
+    }
     void Start()
     {
         wet = false;
         onFire = false;
         msModifier = 1;
-        lizzy = GameObject.FindGameObjectWithTag("Lizzy"); //TODO add the object Lizzy
         curCell = WorldGrid.GetClosestGrid(transform.position.x, transform.position.z);
         transform.position = curCell.worldPosition;
         targetCell = lizzy.GetComponent<towerScript>().cellPt;
@@ -38,10 +42,14 @@ public class EnemyController : MonoBehaviour
         GetComponent<SphereCollider>().radius = attackRange;
     }
 
+    
+
     // Update is called once per frame
     void FixedUpdate()
     {
-        // enemy walking to the lizzy
+        // TODO: check if a better solution exist
+        if (targetCell == null)
+            targetCell = lizzy.GetComponent<towerScript>().cellPt;
         timer -= Time.deltaTime;
         //print(timer);
 
@@ -65,6 +73,8 @@ public class EnemyController : MonoBehaviour
 
     private void SelectMoveCell()
     {
+        print("enemy target " + targetCell);
+        print("enemy cell " + curCell);
         int di = targetCell.listPosition.x - curCell.listPosition.x;
         int dj = targetCell.listPosition.y - curCell.listPosition.y;
 

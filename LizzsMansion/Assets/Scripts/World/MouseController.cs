@@ -5,10 +5,12 @@ using UnityEngine;
 public class MouseController : MonoBehaviour
 {
     public GameObject clickedTower;
+    int layermask;
     // Start is called before the first frame update
     void Start()
     {
-        
+        layermask = 1 << 0;
+        //layermask = ~layermask;
     }
 
     // Update is called once per frame
@@ -18,8 +20,9 @@ public class MouseController : MonoBehaviour
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-            if (Physics.Raycast(ray, out hit))
+            if (Physics.Raycast(ray, out hit,Mathf.Infinity, layermask))
             {
+                print("the raycast hit" + hit.transform.gameObject);
                 if (hit.transform.gameObject.GetComponent<DragController>())
                 {
                     if(hit.transform.gameObject.tag == "Hittable")
