@@ -17,7 +17,10 @@ public class projectileScript : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        Move();
+        if (target != null)
+        {
+            Move();
+        }
     }
 
     private void Move()
@@ -30,7 +33,6 @@ public class projectileScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
-        print("entered collision");
         if (collision.gameObject.GetComponent<EnemyController>() != null)
         {
             print("damage");
