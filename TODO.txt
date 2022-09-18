@@ -1,0 +1,5 @@
+Create towers
+Combine towers
+Spawn towers -> drop from enemies or spawn around
+Spawn points for enemies
+Better pathfinding for enemies
