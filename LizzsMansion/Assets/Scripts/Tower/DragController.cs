@@ -18,6 +18,11 @@ public class DragController : MonoBehaviour
         transform.GetChild(0).localScale *= gridSize;
     }
 
+    public void Intialize()
+    {
+        Start();
+    }
+
     // Update is called once per frame
     void Update()
     {

@@ -87,7 +87,7 @@ public static class WorldGrid
     public static Vector2 gridSize;
     public static GridCell[,] gridCellList;
     public static Dictionary<GameObject, GridCell> gridCellDict;
-    public static Vector2 numCells;
+    public static Vector2Int numCells;
     public static Vector2 cellSize;
     public static Vector3 centerPoint;
     static int bossFridgeThreshold;

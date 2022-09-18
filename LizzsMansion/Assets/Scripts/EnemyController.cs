@@ -80,7 +80,7 @@ public class EnemyController : MonoBehaviour
 
         int targetI = curCell.listPosition.x;
         int targetJ = curCell.listPosition.y;
-        if(Mathf.Max(di, dj) == 1f)
+        if(Mathf.Max(Mathf.Abs(di), Mathf.Abs(dj)) == 1f)
         {
             return;
         }

@@ -19,9 +19,8 @@ public class towerScript : MonoBehaviour
         occupiedGridCells = new List<GridCell>();
         cellPt = WorldGrid.GetClosestGrid(transform.position.x, transform.position.z);
         transform.position = cellPt.worldPosition;
+        cellPt.occupied = true;
         GetComponent<SphereCollider>().radius = attackRadius;
-        transform.GetChild(1).localScale = new Vector3(attackRadius*2, 
-            attackRadius*2, attackRadius*2);
     }
 
     // Update is called once per frame
