@@ -29,6 +29,7 @@ public class PlatformScript : MonoBehaviour
     {
         if (other.gameObject.GetComponent<EnemyController>() != null && timer <= 0)
         {
+
             timer = atkTime;
             other.gameObject.GetComponent<EnemyController>().receiveDamage(damage, isWet, isFire);
         }
