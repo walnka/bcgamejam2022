@@ -6,6 +6,7 @@ public class DragController : MonoBehaviour
 {
     public float bobTimer;
     public bool canBeMoved;
+    public GameObject referenceTower;
     // Start is called before the first frame update
     void Start()
     {

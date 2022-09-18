@@ -33,11 +33,11 @@ public class EnemyMaterilHandles : MonoBehaviour
 
     private void shuffleMaterial()
     {
-        if (i >= materialList.Length)
-        {
-            i = -1;
-        }
         i++;
+        if (i == materialList.Length)
+        {
+            i = 0;
+        }
         enemyVisuals.GetComponent<Renderer>().material = materialList[i];
     }
 

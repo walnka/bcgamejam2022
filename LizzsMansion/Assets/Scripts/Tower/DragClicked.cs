@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class DragClicked : StateMachineBehaviour
 {
+    DragController dc;
+    GridCell curGc;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        
+        dc = animator.gameObject.GetComponent<DragController>();
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -18,11 +20,18 @@ public class DragClicked : StateMachineBehaviour
         if(gc != null) 
         {
             animator.gameObject.transform.position = gc.worldPosition;
+            curGc = gc;
         }
 
         if (Input.GetMouseButtonDown(0))
         {
             animator.SetBool("Clicked", false);
+            if (!curGc.occupied)
+            {
+                Instantiate(dc.referenceTower, animator.gameObject.transform.position, Quaternion.identity);
+                curGc.occupied = true;
+                Destroy(animator.gameObject);
+            }
         }
     }
 

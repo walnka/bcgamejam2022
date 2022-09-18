@@ -7,6 +7,7 @@ public class towerScript : MonoBehaviour
     public float health;
     public bool asBuff;
     public bool dmBuff;
+    public int attackRadius;
     public GridCell cellPt { get; set; }
 
 
@@ -14,6 +15,8 @@ public class towerScript : MonoBehaviour
     void Start()
     {
         cellPt = WorldGrid.GetClosestGrid(transform.position.x, transform.position.z);
+        transform.position = cellPt.worldPosition;
+        GetComponent<SphereCollider>().radius = attackRadius;
     }
 
     // Update is called once per frame
