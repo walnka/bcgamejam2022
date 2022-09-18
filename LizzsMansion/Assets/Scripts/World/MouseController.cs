@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MouseController : MonoBehaviour
 {
+    public GameObject clickedTower;
     // Start is called before the first frame update
     void Start()
     {
@@ -13,7 +14,6 @@ public class MouseController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log(WorldGrid.GetMouseToWorldPos());
         if (Input.GetMouseButtonDown(0))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -26,6 +26,14 @@ public class MouseController : MonoBehaviour
                     {
                         hit.transform.gameObject.tag = "Untagged";
                         hit.transform.gameObject.GetComponent<Animator>().SetBool("Clicked", true);
+                    }
+                }
+                else if (hit.transform.gameObject.GetComponent<towerScript>())
+                {
+                    Debug.Log(hit.transform.gameObject);
+                    if(hit.transform.gameObject.tag == "Hittable")
+                    {
+                        clickedTower = hit.transform.gameObject;
                     }
                 }
             }

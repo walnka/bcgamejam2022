@@ -81,7 +81,6 @@ MonoBehaviour:
   asBuff: 0
   dmBuff: 0
   attackRadius: 10
-  allTowers: {fileID: 0}
 --- !u!114 &7248914513051461195
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -94,10 +93,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b55458627ea3ceb44985a807d3512867, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projSpawnPoint: {fileID: 0}
+  projSpawnPoint: {fileID: 4797163799598896901}
   atkTime: 0
-  atkArea: {fileID: 0}
-  projPrefab: {fileID: 0}
+  atkArea: {fileID: -2520742136851379661}
+  projPrefab: {fileID: 6061614872817030455, guid: 86689a2d956aa9b4195b7f6ec3145cbf, type: 3}
   isFast: 0
 --- !u!65 &8699846391268349816
 BoxCollider:

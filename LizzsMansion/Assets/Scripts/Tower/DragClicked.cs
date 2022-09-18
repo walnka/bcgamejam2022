@@ -6,10 +6,12 @@ public class DragClicked : StateMachineBehaviour
 {
     DragController dc;
     GridCell curGc;
+    MouseController mc;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         dc = animator.gameObject.GetComponent<DragController>();
+        mc = dc.mouse;
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -25,13 +27,71 @@ public class DragClicked : StateMachineBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            animator.SetBool("Clicked", false);
+            //animator.SetBool("Clicked", false);
             if (!curGc.occupied)
             {
-                Instantiate(dc.referenceTower, animator.gameObject.transform.position, Quaternion.identity);
+                GameObject tower = Instantiate(dc.referenceTower, 
+                    animator.gameObject.transform.position, 
+                    Quaternion.identity);
+                tower.transform.GetChild(1).localScale = new Vector3(20, 20, 20);
+                tower.tag = "Hittable";
+                tower.SetActive(true);
+                tower.transform.localScale *= dc.gridSize;
+                towerScript ts = tower.GetComponent<towerScript>();
+                Debug.Log(ts);
+                ts.occupiedGridCells = new List<GridCell>();
+                
+                int occupiedCells = dc.gridSize % 2 == 0 ? dc.gridSize + 1 : dc.gridSize;
+                for(int i = -occupiedCells / 2; i <= occupiedCells / 2; i++)
+                {
+                    for(int j = -occupiedCells / 2; j <= occupiedCells / 2; j++)
+                    {
+                        GridCell gcHold = WorldGrid.gridCellList[curGc.listPosition.x + i, curGc.listPosition.y + j];
+                        gcHold.occupied = true;
+                        ts.occupiedGridCells.Add(gcHold);
+                    }
+                }
                 curGc.occupied = true;
-                Destroy(animator.gameObject);
+                Destroy(dc);
+                Destroy(animator.gameObject.GetComponent<SphereCollider>());
+                Destroy(animator);
             }
+            else if(mc.clickedTower != null)
+            {
+                Debug.Log("checking new tower");
+                GameObject newtower = AllTowers.CheckCombination(mc.clickedTower, dc.referenceTower);
+                Debug.Log(newtower);
+                if (newtower != null)
+                {
+                    Destroy(mc.clickedTower);
+                    GameObject tower = Instantiate(newtower,
+                    animator.gameObject.transform.position,
+                    Quaternion.identity);
+                    tower.transform.GetChild(1).localScale = new Vector3(20, 20, 20);
+                    tower.tag = "Hittable";
+                    tower.SetActive(true);
+                    tower.transform.localScale *= dc.gridSize;
+                    towerScript ts = tower.GetComponent<towerScript>();
+                    Debug.Log(ts);
+                    ts.occupiedGridCells = new List<GridCell>();
+
+                    int occupiedCells = dc.gridSize % 2 == 0 ? dc.gridSize + 1 : dc.gridSize;
+                    for (int i = -occupiedCells / 2; i <= occupiedCells / 2; i++)
+                    {
+                        for (int j = -occupiedCells / 2; j <= occupiedCells / 2; j++)
+                        {
+                            GridCell gcHold = WorldGrid.gridCellList[curGc.listPosition.x + i, curGc.listPosition.y + j];
+                            gcHold.occupied = true;
+                            ts.occupiedGridCells.Add(gcHold);
+                        }
+                    }
+                    curGc.occupied = true;
+                    Destroy(dc);
+                    Destroy(animator.gameObject.GetComponent<SphereCollider>());
+                    Destroy(animator);
+                }
+            }
+            
         }
     }
 
