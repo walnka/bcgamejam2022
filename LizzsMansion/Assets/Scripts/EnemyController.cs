@@ -47,7 +47,6 @@ public class EnemyController : MonoBehaviour
         if(other.gameObject.GetComponent<towerScript>() != null && timer <= 0)
         {
             print("enemy dot");
-
             timer = atkTime;
             other.gameObject.GetComponent<towerScript>().receiveDamage(damage);
         }
