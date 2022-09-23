@@ -5,7 +5,7 @@ using UnityEngine;
 public class DragController : MonoBehaviour
 {
     public float bobTimer;
-    public bool canBeMoved;
+    public bool canBeMoved { get; set; }
     public GameObject referenceTower;
     public int i, j;
     public int gridSize;

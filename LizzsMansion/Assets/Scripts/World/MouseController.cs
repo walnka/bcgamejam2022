@@ -22,7 +22,7 @@ public class MouseController : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit,Mathf.Infinity, layermask))
             {
-                print("the raycast hit" + hit.transform.gameObject);
+                print("the raycast hit " + hit.transform.gameObject);
                 if (hit.transform.gameObject.GetComponent<DragController>())
                 {
                     if(hit.transform.gameObject.tag == "Hittable")
